@@ -1,0 +1,11 @@
+---
+- name: Update apt cache
+  apt:
+    update_cache: yes
+
+- name: Install Python and Flask
+  apt:
+    name:
+      - python3
+      - python3-flask
+    state: present

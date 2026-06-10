@@ -1,0 +1,14 @@
+---
+- name: Verify that the Flask app is responding
+  uri:
+    url: "http://localhost:5000"
+    method: GET
+    return_content: yes
+  register: app_status
+  retries: 3
+  delay: 5
+  until: app_status.status == 200
+
+- name: Print verification success
+  debug:
+    msg: "Verification passed! Application is up and running."

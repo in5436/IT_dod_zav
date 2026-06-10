@@ -1,0 +1,23 @@
+---
+- name: Create a directory for our app
+  file:
+    path: /opt/webapp
+    state: directory
+    owner: ubuntu
+
+- name: Copy app.py to the server
+  copy:
+    src: app.py
+    dest: /opt/webapp/app.py
+    owner: ubuntu
+
+- name: Create a systemd service from j2 template
+  template:
+    src: webapp.service.j2
+    dest: /etc/systemd/system/webapp.service
+
+- name: Start and enable the web application
+  systemd:
+    name: webapp
+    state: restarted
+    enabled: yes
