@@ -1,0 +1,8 @@
+---
+- name: Setup Python Web App on EC2
+  hosts: webservers
+  become: yes
+  roles:
+    - setup
+    - app_install
+    - verification
